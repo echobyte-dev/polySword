@@ -1,0 +1,31 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+sword/.vs
+
+sword/Temp
+
+sword/Library
+sword/Assembly-CSharp.csproj
+sword/Assembly-CSharp-Editor.csproj
+sword/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+
+sword/obj
+
+.vs
+/builds
+sword/Assets/Plugins/Editor/JetBrains
+
+sword/ProjectSettings/ProjectVersion.txt
+sword/Packages/manifest.json
+sword/Packages/packages-lock.json
+sword/ProjectSettings/PackageManagerSettings.asset
+sword/KnowledgeIsPower.sln.DotSettings.user
+
+*.csproj
+
+# Build related
+Cake/tools/**
+Cake/!tools/packages.config
+
+# Ignore media & other temp files
+*.log
+*.log.meta
