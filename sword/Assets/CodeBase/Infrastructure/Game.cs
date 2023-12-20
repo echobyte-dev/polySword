@@ -1,20 +1,17 @@
 using CodeBase.Services.Input;
-using UnityEngine;
+using CodeBase.UI;
 
 namespace CodeBase.Infrastructure
 {
     public class Game
     {
         public static IInputService InputService;
+        public GameStateMachine StateMachine;
 
-        public Game()
+        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
         {
-            RegisterInputInput();
+            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain);
         }
 
-        private static void RegisterInputInput()
-        {
-            InputService = new StandaloneInputService();
-        }
     }
 }
