@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-TestFramework", "Ze
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-PoolMonitor-Editor", "Zenject-PoolMonitor-Editor.csproj", "{0f6710e7-a5eb-0a21-7371-15d3d9c930e9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{5f94bb0c-82cd-8593-4378-0d691ba444cf}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,8 @@ Global
 		{83b11590-03c7-172c-d628-4b4e9d240371}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0f6710e7-a5eb-0a21-7371-15d3d9c930e9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0f6710e7-a5eb-0a21-7371-15d3d9c930e9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5f94bb0c-82cd-8593-4378-0d691ba444cf}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5f94bb0c-82cd-8593-4378-0d691ba444cf}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 
 namespace CodeBase.Infrastructure.Factories
 {
-  public interface IAssetProvider
+  public interface IAssets
   {
     GameObject Instantiate(string path);
     GameObject Instantiate(string path, Vector3 at);

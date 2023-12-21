@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1820077099161628163
+--- !u!1 &2433961730709671484
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1223901009057632096}
-  - component: {fileID: 4460338651211122134}
+  - component: {fileID: 7308079901554967847}
+  - component: {fileID: 4818526609228617634}
   m_Layer: 0
-  m_Name: GameBootstrapper
+  m_Name: GameRunner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1223901009057632096
+--- !u!4 &7308079901554967847
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820077099161628163}
+  m_GameObject: {fileID: 2433961730709671484}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.9029903, y: 0.17787927, z: 2.5429888}
+  m_LocalPosition: {x: -4.9434967, y: 4.4789996, z: 4.6314297}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4460338651211122134
+--- !u!114 &4818526609228617634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820077099161628163}
+  m_GameObject: {fileID: 2433961730709671484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2577d61bd454448793a7b26c9cbafefb, type: 3}
+  m_Script: {fileID: 11500000, guid: 154d8a93fd944cf8afa1ee3113c9c018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurtainPrefab: {fileID: 3376895663678451346, guid: b5e76c5af46c1a34a8e1e696cb37acdc, type: 3}
+  _gameBootstrapperPrefab: {fileID: 4460338651211122134, guid: 4f4bcf7e61564644399505fe0b1c3039, type: 3}
