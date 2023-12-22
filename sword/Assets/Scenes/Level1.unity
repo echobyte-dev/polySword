@@ -899,9 +899,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e446633b9e4f26be4873c2c7bb322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationAngleX: 75
+  _rotationAngleX: 55
   _distance: 10
-  _offsetY: 5
+  _offsetY: 1
 --- !u!4 &976623019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4525431197815690, guid: d2201b576d0da384fb8f681e57559ea8, type: 3}
