@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CodeBase.Data;
 using CodeBase.Infrastructure.AssetManagement;
 using UnityEngine;
@@ -9,16 +10,23 @@ namespace CodeBase.Infrastructure.Factories
   {
     private readonly IAssets _assets;
 
+    public GameObject PlayerGameObject { get; set; }
     public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
     public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
+
+    public event Action PlayerCreated;
 
     public GameFactory(IAssets assets)
     {
       _assets = assets;
     }
 
-    public GameObject CreatePlayer(GameObject at) => 
-      InstantiateRegistered(AssetPath.PlayerPath, at.transform.position);
+    public GameObject CreatePlayer(GameObject at)
+    {
+      PlayerGameObject = InstantiateRegistered(AssetPath.PlayerPath, at.transform.position);
+      PlayerCreated?.Invoke();
+      return PlayerGameObject;
+    }
 
     public void Cleanup()
     {
