@@ -8,6 +8,7 @@ namespace CodeBase.Infrastructure.Factories
   public interface IGameFactory
   {
     GameObject CreatePlayer(GameObject at);
+    GameObject CreateHud();
     event Action PlayerCreated;
     GameObject PlayerGameObject { get; }
     List<ISavedProgressReader> ProgressReaders { get; }

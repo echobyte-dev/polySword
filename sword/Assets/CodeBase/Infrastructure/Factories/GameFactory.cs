@@ -28,6 +28,9 @@ namespace CodeBase.Infrastructure.Factories
       return PlayerGameObject;
     }
 
+    public GameObject CreateHud() => 
+      InstantiateRegistered(AssetPath.HudPath);
+
     public void Cleanup()
     {
       ProgressReaders.Clear();
@@ -38,6 +41,14 @@ namespace CodeBase.Infrastructure.Factories
     {
       GameObject gameObject = _assets.Instantiate(prefabPath, at: at);
       
+      RegisterProgressWatchers(gameObject);
+      return gameObject;
+    }
+    
+    private GameObject InstantiateRegistered(string prefabPath)
+    {
+      GameObject gameObject = _assets.Instantiate(path: prefabPath);
+
       RegisterProgressWatchers(gameObject);
       return gameObject;
     }

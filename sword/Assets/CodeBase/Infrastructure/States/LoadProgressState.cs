@@ -38,7 +38,14 @@ namespace CodeBase.Infrastructure.States
 
     private PlayerProgress NewProgress()
     {
-      return new PlayerProgress( "Level1");
+      var progress = new PlayerProgress("Level1");
+
+      progress.PlayerState.MaxHP = 50;
+      progress.PlayerStats.Damage = 1f;
+      progress.PlayerStats.DamageRadius = 0.5f;
+      progress.PlayerState.ResetHP();
+      
+      return progress;
     }
       
   }
