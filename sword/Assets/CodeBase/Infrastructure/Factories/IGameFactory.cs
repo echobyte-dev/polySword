@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CodeBase.Components;
 using CodeBase.Data;
+using CodeBase.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Factories
@@ -10,11 +10,10 @@ namespace CodeBase.Infrastructure.Factories
   {
     GameObject CreatePlayer(GameObject at);
     GameObject CreateHud();
-    event Action PlayerCreated;
-    GameObject PlayerGameObject { get; }
     List<ISavedProgressReader> ProgressReaders { get; }
     List<ISavedProgress> ProgressWriters { get; }
     void Cleanup();
     void Register(ISavedProgressReader savedProgress);
+    GameObject CreateMonster(MonsterTypeId typeId, Transform parent);
   }
 }

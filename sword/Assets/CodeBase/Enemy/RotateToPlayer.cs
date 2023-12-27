@@ -1,40 +1,28 @@
 ﻿using CodeBase.Infrastructure.Factories;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace CodeBase.Enemy
 {
   public class RotateToPlayer : Follow
   {
-    public float Speed;
-
-    private Transform _heroTransform;
-    private IGameFactory _gameFactory;
+    [SerializeField] private float _speed;
+    
+    private Transform _playerTransform;
     private Vector3 _positionToLook;
-
-    [Inject]
-    public void Construct(IGameFactory gameFactory)
+    
+    public void Construct(Transform playerTransform)
     {
-      _gameFactory = gameFactory;
+      _playerTransform = playerTransform;
     }
     
-    private void Start()
-    {
-      if (IsPlayerExist())
-        InitializePlayerTransform();
-      else
-        _gameFactory.PlayerCreated += PlayerCreated;
-    }
-
     private void Update()
     {
       if (IsInitialized())
         RotateTowardsPlayer();
     }
-
-    private bool IsPlayerExist() => 
-      _gameFactory.PlayerGameObject != null;
-
+    
     private void RotateTowardsPlayer()
     {
       UpdatePositionToLookAt();
@@ -44,7 +32,7 @@ namespace CodeBase.Enemy
 
     private void UpdatePositionToLookAt()
     {
-      Vector3 positionDelta = _heroTransform.position - transform.position;
+      Vector3 positionDelta = _playerTransform.position - transform.position;
       _positionToLook = new Vector3(positionDelta.x, transform.position.y, positionDelta.z);
     }
 
@@ -55,21 +43,9 @@ namespace CodeBase.Enemy
       Quaternion.LookRotation(position);
 
     private float SpeedFactor() =>
-      Speed * Time.deltaTime;
+      _speed * Time.deltaTime;
 
     private bool IsInitialized() => 
-      _heroTransform != null;
-
-    private void PlayerCreated() =>
-      InitializePlayerTransform();
-
-    private void InitializePlayerTransform() =>
-      _heroTransform = _gameFactory.PlayerGameObject.transform;
-
-    private void OnDestroy()
-    {
-      if(_gameFactory != null)
-        _gameFactory.PlayerCreated -= PlayerCreated;
-    }
+      _playerTransform != null;
   }
 }
