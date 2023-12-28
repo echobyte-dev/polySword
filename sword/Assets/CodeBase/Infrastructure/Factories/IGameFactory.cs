@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Components;
 using CodeBase.Data;
+using CodeBase.Enemy;
 using CodeBase.StaticData;
 using UnityEngine;
 
@@ -15,5 +16,6 @@ namespace CodeBase.Infrastructure.Factories
     void Cleanup();
     void Register(ISavedProgressReader savedProgress);
     GameObject CreateMonster(MonsterTypeId typeId, Transform parent);
+    LootPiece CreateLoot();
   }
 }

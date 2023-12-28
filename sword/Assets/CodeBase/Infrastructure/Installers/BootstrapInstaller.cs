@@ -1,6 +1,7 @@
 ﻿using CodeBase.Infrastructure.Factories;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
+using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using Zenject;
 
@@ -18,6 +19,7 @@ namespace CodeBase.Infrastructure.Installers
       Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
       
       Container.Bind<IAssets>().To<AssetProvider>().AsSingle();
+      Container.Bind<IRandomService>().To<RandomService>().AsSingle();
       Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
     }
   }
