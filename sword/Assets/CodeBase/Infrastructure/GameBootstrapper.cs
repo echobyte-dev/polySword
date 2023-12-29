@@ -19,19 +19,21 @@ namespace CodeBase.Infrastructure
     private IGameFactory _gameFactory;
     private IPersistentProgressService _progressService;
     private ISaveLoadService _saveLoadService;
+    private IStaticDataService _staticData;
 
     [Inject]
-    public void Construct(IGameFactory gameFactory, IInputService inputService, IPersistentProgressService progressService, ISaveLoadService saveLoadService)
+    public void Construct(IGameFactory gameFactory, IInputService inputService, IPersistentProgressService progressService, ISaveLoadService saveLoadService, IStaticDataService staticData)
     {
       InputService = inputService;
       _gameFactory = gameFactory;
       _progressService = progressService;
       _saveLoadService = saveLoadService;
+      _staticData = staticData;
     }
 
     private void Awake()
     {
-      _game = new Game(this, Instantiate(CurtainPrefab), _gameFactory, _progressService, _saveLoadService);
+      _game = new Game(this, Instantiate(CurtainPrefab), _gameFactory, _progressService, _saveLoadService, _staticData);
       _game.StateMachine.Enter<BootstrapState>();
       
       DontDestroyOnLoad(this);

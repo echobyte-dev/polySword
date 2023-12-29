@@ -1,30 +1,23 @@
+using System.Collections.Generic;
 using CodeBase.Data;
 using CodeBase.Enemy;
 using CodeBase.Infrastructure.Factories;
 using CodeBase.StaticData;
 using UnityEngine;
-using Zenject;
 
-namespace CodeBase.Components
+namespace CodeBase.Components.EnemySpawners
 {
-  public class EnemySpawner : MonoBehaviour, ISavedProgress
+  public class SpawnPoint : MonoBehaviour, ISavedProgress
   {
     public MonsterTypeId MonsterTypeId;
+    public string Id { get; set; }
 
-    private IGameFactory _gameFactory;
+    private IGameFactory _factory;
     private EnemyDeath _enemyDeath;
-
-    private string _id;
     private bool _slain;
 
-    [Inject]
-    public void Construct(IGameFactory gameFactory)
-    {
-      _gameFactory = gameFactory;
-    }
-    
-    private void Awake() => 
-      _id = GetComponent<UniqueId>().Id;
+    public void Construct(IGameFactory gameFactory) =>
+      _factory = gameFactory;
 
     private void OnDestroy()
     {
@@ -32,10 +25,9 @@ namespace CodeBase.Components
         _enemyDeath.Happened -= Slay;
     }
 
-
     public void LoadProgress(PlayerProgress progress)
     {
-      if (progress.KillData.ClearedSpawners.Contains(_id))
+      if (progress.KillData.ClearedSpawners.Contains(Id))
         _slain = true;
       else
         Spawn();
@@ -43,13 +35,15 @@ namespace CodeBase.Components
 
     public void UpdateProgress(PlayerProgress progress)
     {
-      if(_slain)
-        progress.KillData.ClearedSpawners.Add(_id);
+      List<string> slainSpawnersList = progress.KillData.ClearedSpawners;
+
+      if (_slain && !slainSpawnersList.Contains(Id))
+        slainSpawnersList.Add(Id);
     }
 
     private void Spawn()
     {
-      GameObject monster = _gameFactory.CreateMonster(MonsterTypeId, transform);
+      GameObject monster = _factory.CreateMonster(MonsterTypeId, transform);
       _enemyDeath = monster.GetComponent<EnemyDeath>();
       _enemyDeath.Happened += Slay;
     }
@@ -58,7 +52,7 @@ namespace CodeBase.Components
     {
       if (_enemyDeath != null)
         _enemyDeath.Happened -= Slay;
-      
+
       _slain = true;
     }
   }

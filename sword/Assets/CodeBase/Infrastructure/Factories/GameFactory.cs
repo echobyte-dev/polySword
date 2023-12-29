@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Components;
+using CodeBase.Components.EnemySpawners;
 using CodeBase.Data;
 using CodeBase.Enemy;
 using CodeBase.Infrastructure.AssetManagement;
@@ -41,8 +42,6 @@ namespace CodeBase.Infrastructure.Factories
 
     public GameObject CreateMonster(MonsterTypeId typeId, Transform parent)
     {
-      _staticData.LoadMonsters();
-
       MonsterStaticData monsterData = _staticData.ForMonster(typeId);
       GameObject monster = Object.Instantiate(monsterData.Prefab, parent.position, Quaternion.identity, parent);
 
@@ -67,6 +66,15 @@ namespace CodeBase.Infrastructure.Factories
       attack.EffectiveDistance = monsterData.EffectiveDistance;
       
       return monster;
+    }
+
+    public void CreateSpawner(string spawnerId, Vector3 at, MonsterTypeId monsterTypeId)
+    {
+      SpawnPoint spawner = InstantiateRegistered(AssetPath.Spawner, at).GetComponent<SpawnPoint>();
+      
+      spawner.Construct(this);
+      spawner.MonsterTypeId = monsterTypeId;
+      spawner.Id = spawnerId;
     }
 
     public LootPiece CreateLoot()
