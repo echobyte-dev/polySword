@@ -4,6 +4,8 @@ using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Infrastructure.States;
 using CodeBase.UI;
+using CodeBase.UI.Elements;
+using CodeBase.UI.Services.Factory;
 
 namespace CodeBase.Infrastructure
 {
@@ -13,9 +15,9 @@ namespace CodeBase.Infrastructure
         
         public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, IGameFactory gameFactory,
             IPersistentProgressService progressService, ISaveLoadService saveLoadService,
-            IStaticDataService staticData)
+            IStaticDataService staticData, IUIFactory uiFactory)
         {
-            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, gameFactory, progressService, saveLoadService, staticData);
+            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, gameFactory, progressService, saveLoadService, staticData, uiFactory);
         }
 
     }

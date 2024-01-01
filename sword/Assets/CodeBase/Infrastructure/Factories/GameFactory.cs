@@ -9,6 +9,9 @@ using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.StaticData;
 using CodeBase.UI;
+using CodeBase.UI.Elements;
+using CodeBase.UI.Services.Windows;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
@@ -18,20 +21,22 @@ namespace CodeBase.Infrastructure.Factories
   public class GameFactory : IGameFactory
   {
     private readonly IAssets _assets;
-    private IStaticDataService _staticData;
-    private IRandomService _randomService;
-    private IPersistentProgressService _progressService;
+    private readonly IStaticDataService _staticData;
+    private readonly IRandomService _randomService;
+    private readonly IPersistentProgressService _progressService;
+    private readonly IWindowService _windowService;
 
     private GameObject _playerGameObject { get; set; }
     public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
     public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
-    public GameFactory(IAssets assets, IStaticDataService staticData, IRandomService randomService, IPersistentProgressService progressService)
+    public GameFactory(IAssets assets, IStaticDataService staticData, IRandomService randomService, IPersistentProgressService progressService, IWindowService windowService)
     {
       _assets = assets;
       _staticData = staticData;
       _randomService = randomService;
       _progressService = progressService;
+      _windowService = windowService;
     }
 
     public GameObject CreatePlayer(GameObject at)
@@ -93,7 +98,10 @@ namespace CodeBase.Infrastructure.Factories
       
       hud.GetComponentInChildren<LootCounter>()
         .Construct(_progressService.Progress.WorldData);
-      
+
+      foreach (OpenWindowButton openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
+        openWindowButton.Construct(_windowService);
+
       return hud;
     }
 

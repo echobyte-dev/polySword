@@ -5,6 +5,8 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.UI;
+using CodeBase.UI.Elements;
+using CodeBase.UI.Services.Factory;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -17,12 +19,12 @@ namespace CodeBase.Infrastructure.States
 
     public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, IGameFactory gameFactory,
       IPersistentProgressService progressService, ISaveLoadService saveLoadService,
-      IStaticDataService staticData)
+      IStaticDataService staticData, IUIFactory uiFactory)
     {
       _states = new Dictionary<Type, IExitableState>()
       {
         [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, staticData),
-        [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, gameFactory, progressService, staticData),
+        [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, gameFactory, progressService, staticData, uiFactory),
         [typeof(LoadProgressState)] = new LoadProgressState(this, progressService, saveLoadService),
         [typeof(GameLoopState)] = new GameLoopState(this)
       };

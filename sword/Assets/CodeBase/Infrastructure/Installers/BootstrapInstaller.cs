@@ -3,6 +3,8 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.Infrastructure.Services.SaveLoad;
+using CodeBase.UI.Services.Factory;
+using CodeBase.UI.Services.Windows;
 using Zenject;
 
 namespace CodeBase.Infrastructure.Installers
@@ -21,6 +23,9 @@ namespace CodeBase.Infrastructure.Installers
       Container.Bind<IAssets>().To<AssetProvider>().AsSingle();
       Container.Bind<IRandomService>().To<RandomService>().AsSingle();
       Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+      
+      Container.Bind<IWindowService>().To<WindowService>().AsSingle();
+      Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
     }
   }
 }
